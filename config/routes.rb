@@ -16,6 +16,11 @@ Rails.application.routes.draw do
     end
   end
   
+   resources :microposts do
+    post 'add' => 'favorites#create'
+    delete '/add' => 'favorites#destroy'
+  end
+  
   
   
   resources :microposts, only: [:create, :destroy]

@@ -4,11 +4,20 @@ class UsersController < ApplicationController
     @users = User.order(id: :desc).page(params[:page]).per(25)
   end
 
-  def show
-    @user = User.find(params[:id])
-    @microposts = @user.microposts.order(id: :desc).page(params[:page])
-    counts(@user)
-  end
+  # def show
+  #   @user = User.find(params[:id])
+  #   @microposts = @user.microposts.order(id: :desc).page(params[:page])
+  #   counts(@user)
+  # end
+  
+    def show
+          @user = User.find(params[:id])
+
+      @micropost = current_user.microposts.build
+      @microposts = current_user.likes.order(id: :desc).page(params[:page])
+    end
+    
+  
 
   def new
     @user = User.new
@@ -45,6 +54,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+  
+  # def likes
+  # self.favorites.find_or_create_by(user_id: current_user.id ,micropost_id: microposts.id)
+  # end
   
 
 end
