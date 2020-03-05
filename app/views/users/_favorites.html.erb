@@ -13,9 +13,11 @@
             </div>
             
                             <% if !Favorite.exists?(user_id:current_user.id,micropost_id:micropost.id) %>
-    <%= link_to "お気に入り",micropost_add_path(micropost),method: :post %>
-    <% else %>
-    <%= link_to "お気に入り解除",micropost_add_path(micropost),method: :delete %>
+    <%= link_to "お気に入り",micropost_add_path(micropost),method: :post , class:'btn btn-primary btn-sm' %>
+        <% else %>
+
+    <%= link_to "お気に入り解除",micropost_add_path(micropost),method: :delete , class:'btn btn-success btn-sm' %>
+
 
     <% end %>
             
